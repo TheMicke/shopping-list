@@ -1,13 +1,15 @@
 import React from 'react';
 
+import Home from './components/Home/Home';
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1>hej på dig!</h1>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            <header className="App-header">
+                <Home />
+            </header>
+        </div>
+    );
 }
 
 export default App;
