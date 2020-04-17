@@ -13,8 +13,7 @@ const client = new Client({
     await client.query(``);
 
     // eslint-disable-next-line no-console
-    console.log("Adding John Doe to db.");
-    const random = Math.floor(Math.random() * 1000);
+    console.log("Adding users to db.");
     await client.query(`
     INSERT INTO users(
         first_name,
@@ -24,12 +23,19 @@ const client = new Client({
         password
     ) 
     VALUES (
-        'John',
-        'Doe',
-        'JohnDoe${random}',
-        'johndoe${random}@contoso.com',
-        'password'
-    );
+            'John',
+            'Doe',
+            'JohnDoe',
+            'johndoe@contoso.com',
+            'password'
+        ),
+        (
+            'Jane',
+            'Doe',
+            'JaneDoe',
+            'janedoe@contoso.com',
+            'pwd'
+        );
     `);
     console.log("Done");
 
