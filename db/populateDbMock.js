@@ -43,14 +43,54 @@ const client = new Client({
     console.log("Adding lists");
     await client.query(`
         INSERT INTO lists(
-            name,
+            title,
             description,
             owner
         ) 
         VALUES (
-            'Shopping list one',
+            'Taco list',
             'Shopping list for taco night',
             '1'
+        ),
+        (
+            'List #2',
+            'Random TODO list',
+            '2'
+        );
+    `);
+    
+    // eslint-disable-next-line no-console
+    console.log("Adding todos to lists");
+    await client.query(`
+        INSERT INTO todos(
+            title,
+            description,
+            list_id
+        ) 
+        VALUES (
+            'Meat',
+            'ground beef',
+            '1'
+        ),
+        (
+            'Tortillas',
+            'The large ones',
+            '1'
+        ),
+        (
+            'Avocados',
+            'For the guac',
+            '1'
+        ),
+        (
+            'Clean the kitchen',
+            '',
+            '2'
+        ),
+        (
+            'Do some coding',
+            'hack hack hack',
+            '2'
         );
     `);
     // eslint-disable-next-line no-console

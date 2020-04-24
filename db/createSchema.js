@@ -15,8 +15,9 @@ console.log("Creating DB Schema");
 
     const res = await client.query(`
 
-        DROP TABLE IF EXISTS users;
+        DROP TABLE IF EXISTS todos;
         DROP TABLE IF EXISTS lists;
+        DROP TABLE IF EXISTS users;
 
         CREATE TABLE IF NOT EXISTS users (
             id SERIAL PRIMARY KEY NOT NULL UNIQUE,
@@ -32,12 +33,24 @@ console.log("Creating DB Schema");
 
         CREATE TABLE IF NOT EXISTS lists (
             id SERIAL PRIMARY KEY NOT NULL UNIQUE,
-            name VARCHAR NOT NULL,
+            title VARCHAR NOT NULL,
             description VARCHAR,
             owner INT NOT NULL,
             created_at TIMESTAMP NOT NULL DEFAULT NOW(),
             updated_at TIMESTAMP
         );
+
+        CREATE TABLE IF NOT EXISTS todos (
+            id SERIAL PRIMARY KEY NOT NULL UNIQUE,
+            title VARCHAR NOT NULL,
+            description VARCHAR,
+            is_checked BOOL DEFAULT false,
+            checked_by INT,
+            list_id INT NOT NULL,
+            FOREIGN KEY (list_id) REFERENCES lists (id),
+            created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+            updated_at TIMESTAMP
+        )
     `);
     console.log("Done");
     await client.end();
