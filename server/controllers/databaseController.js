@@ -17,20 +17,20 @@ const testDatabaseControllerFile = () => {
 };
 
 // Add new list to database
-const createNewList = async (listName, listDescription, listOwner) => {
+const createNewList = async (title, description, owner) => {
     const client = getNewClient();
     await client.connect();
     
     await client.query(`
         INSERT INTO lists(
-            name,
+            title,
             description,
             owner
         ) 
         VALUES (
-            '${listName}',
-            '${listDescription}',
-            '${listOwner}'
+            '${title}',
+            '${description}',
+            '${owner}'
         );
     `);
     
@@ -47,12 +47,48 @@ const getAllLists = async () => {
         SELECT * FROM lists;
     `);
     
-    await client.end;
+    await client.end();
     return lists;
+};
+
+// Add todo to list
+const addTodo = async (title, description, listId) => {
+    const client = getNewClient();
+    await client.connect();
+
+    await client.query(`
+        INSERT INTO todos(
+            title,
+            description,
+            list_id
+        ) 
+        VALUES (
+            '${title}',
+            '${description}',
+            '${listId}'
+        );
+    `);
+    await client.end();
+    return true;
+};
+
+// Get all list todos
+const getListTodos = async (listId) => {
+    const client = getNewClient();
+    await client.connect();
+
+    const todos = await client.query(`
+        SELECT * FROM todos WHERE list_id = ${listId};
+    `);
+
+    await client.end();
+    return todos;
 };
 
 module.exports = { 
     testDatabaseControllerFile, 
     createNewList,
     getAllLists,
+    addTodo,
+    getListTodos,
 };
