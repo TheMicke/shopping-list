@@ -23,10 +23,11 @@ describe('DatabaseController test suite', () => {
 
     // will cause error if test us run more than once after running createSchema+populateDbMock
     it('Adding new todo to list 1', async () => {
-        await addTodo('testFile', 'testFileDescription', 1);
-        const countAfterInsert = await getListTodos(1);
+        const countBeforeInsert = await getListTodos(2);
+        await addTodo('testFile', 'testFileDescription', 2);
+        const countAfterInsert = await getListTodos(2);
 
-        assert.equal(countAfterInsert.rows.length, 4);
+        assert.equal(countAfterInsert.rows.length, countBeforeInsert.rows.length+1);
     });
 
 });
