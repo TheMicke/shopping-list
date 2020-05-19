@@ -1,4 +1,5 @@
 const { Client } = require('pg');
+const bcrypt = require('bcrypt');
 
 // Get a client for database calls
 const getNewClient = () => {
@@ -85,10 +86,53 @@ const getListTodos = async (listId) => {
     return todos;
 };
 
+const getAllUsers = async () => {
+    const client = getNewClient();
+    await client.connect();
+
+    const users = await client.query(`
+        SELECT * FROM users;
+    `);
+
+    return users;
+};
+
+const getSingleUser = async (userData) => {
+    const client = getNewClient();
+    await client.connect();
+
+    const user = await client.query(`
+        SELECT * FROM users WHERE email = '${userData.email}';
+    `);
+
+    return user;
+};
+
+const addUser = async (userData) => {
+    console.log('userData @ addUser @ databaseController; ', userData);
+    const client = getNewClient();
+    await client.connect();
+
+    if ((await getSingleUser({email: userData.email})).rows.length < 1) {
+        console.log('User does not exist and can be added');
+    } else {
+        console.log('User already exists');
+    }
+    const pwd = await bcrypt.hash(userData.password, 10);
+    
+    console.log(userData.password);
+    console.log(pwd);
+
+    return true;
+};
+
 module.exports = { 
     testDatabaseControllerFile, 
     createNewList,
     getAllLists,
     addTodo,
     getListTodos,
+    getAllUsers,
+    getSingleUser,
+    addUser,
 };

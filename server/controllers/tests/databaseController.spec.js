@@ -1,6 +1,18 @@
 /* eslint-disable no-undef */
 const assert = require('assert');
-const { testDatabaseControllerFile, createNewList, getAllLists, getListTodos, addTodo } = require('../databaseController');
+const { testDatabaseControllerFile, 
+    createNewList, 
+    getAllLists, 
+    getListTodos, 
+    addTodo,
+    getAllUsers,
+    getSingleUser,
+    addUser,
+} = require('../databaseController');
+
+it('Adding user', async () => {
+    await addUser({username: 'TestUser1', password: 'qwe', email: 'testuser@contoso.com'});
+});
 
 describe('DatabaseController test suite', () => {
     it('Looking for databaseController', () => {
