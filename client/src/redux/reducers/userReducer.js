@@ -12,7 +12,7 @@ const initialState = {
     },
 };
 
-function rootReducer(state = initialState, action) {
+function userReducer(state = initialState, action) {
     if (action.type === SET_NICKNAME) {
         return Object.assign({}, state, {
             user: { nickname: action.nickname, email: state.user.email, loginToken: state.user.loginToken },
@@ -35,4 +35,4 @@ function rootReducer(state = initialState, action) {
     return state;
 }
 
-export default rootReducer;
+export default userReducer;

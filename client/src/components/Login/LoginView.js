@@ -4,9 +4,10 @@ import config from '../../config.json';
 import store from '../../redux/store';
 
 const handleLogin = (email, setEmail, password) => {
-
+    console.log(email);
+    console.log(password);
     setEmail(email)
-    
+
 
     // const handleLoginSuccess = () => {
     //     setNickname(nickname);
