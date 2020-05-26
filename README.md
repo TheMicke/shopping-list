@@ -1,7 +1,6 @@
 # shopping-list
 Shopping list app where multiple users can share lists
 
-
 ## Requirements
 - Docker
 
@@ -25,3 +24,6 @@ Shopping list app where multiple users can share lists
 2. cd client
 3. npm i
 4. npm run start
+
+## !!! Don't forget to change password for the database in server/docker-compose.yml !!!
+
