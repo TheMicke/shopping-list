@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import config from '../../config.json';
 import store from '../../redux/store';
 
-const handleRegister = (email, setEmail, nickname, setNickname, password) => {
-    console.log(email);
-    console.log(password);
+const handleRegister = (firstName, setFirstName, lastName, setLastName, email, setEmail, nickname, setNickname, password) => {
+    
+    setFirstName(firstName);
+    setLastName(lastName);
+    setNickname(nickname);
     setEmail(email)
-
+    console.log(store.getState());
 
     // const handleRegisterSuccess = () => {
     //     setNickname(nickname);
@@ -19,24 +21,26 @@ const handleRegister = (email, setEmail, nickname, setNickname, password) => {
     //     console.log(store.getState());
     // };
 
-    fetch(config.server + '/user/register', {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email: email, nickname: nickname, password: password }),
-    })
-        .then(res => res.json())
-        .then(data => (data.status === 'success' ? console.log('register successful', data) : console.log('register failed ', data)));
+    // fetch(config.server + '/user/register', {
+    //     method: 'POST',
+    //     mode: 'cors',
+    //     headers: {
+    //         Accept: 'application/json',
+    //         'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({firstName: firstName, lastName: lastName, email: email, nickname: nickname, password: password }),
+    // })
+    //     .then(res => res.json())
+    //     .then(data => (data.status === 'success' ? console.log('register successful', data) : console.log('register failed ', data)));
 };
 
-const RegisterView = ({ setNickname, nickname, setEmail, email, setLoginToken, loginToken }) => (
+const RegisterView = ({ setFirstName, firstName, setLastName, lastName, setNickname, nickname, setEmail, email, setLoginToken, loginToken }) => (
     <>
         <p>This is the Register component</p>
 
         <form>
+            <input type="text" id="register-first-name" name="first-name" placeholder="First name"></input>
+            <input type="text" id="register-last-name" name="last-name" placeholder="Last name"></input>
             <input type="text" id="nickname" name="nickname" placeholder="Nickname"></input>
             <input type="email" id="register-email" name="register-email" placeholder="E-mail"></input>
             <input type="password" id="register-password" name="register-password" placeholder="Password"></input>
@@ -44,6 +48,10 @@ const RegisterView = ({ setNickname, nickname, setEmail, email, setLoginToken, l
                 onClick={e => {
                     e.preventDefault();
                     handleRegister(
+                        document.getElementById('register-first-name').value, 
+                        setFirstName,
+                        document.getElementById('register-last-name').value, 
+                        setLastName,
                         document.getElementById('register-email').value, 
                         setEmail, 
                         document.getElementById('nickname').value,
