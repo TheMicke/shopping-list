@@ -1,9 +1,9 @@
-import { SET_FIRSTNAME, SET_LASTNAME, SET_NICKNAME, SET_EMAIL, SET_LOGINTOKEN } from '../constants/action-types';
+import { SET_FIRSTNAME, SET_LASTNAME, SET_USERNAME, SET_EMAIL, SET_LOGINTOKEN } from '../constants/action-types';
 
 const initialState = {
     firstName: null,
     lastName: null,
-    nickname: null,
+    username: null,
     email: null,
     loginToken: null,
 };
@@ -13,7 +13,7 @@ const userReducer = (state = initialState, action) => {
         return Object.assign({}, state, {
             firstName: action.firstName, 
             lastName: state.lastName, 
-            nickname: state.nickname, 
+            username: state.username, 
             email: state.email, 
             loginToken: state.loginToken 
         });
@@ -23,17 +23,17 @@ const userReducer = (state = initialState, action) => {
         return Object.assign({}, state, {
             firstName: state.firstName, 
             lastName: action.lastName, 
-            nickname: state.nickname, 
+            username: state.username, 
             email: state.email, 
             loginToken: state.loginToken 
         });
     }
 
-    if (action.type === SET_NICKNAME) {
+    if (action.type === SET_USERNAME) {
         return Object.assign({}, state, {
             firstName: state.firstName, 
             lastName: state.lastName, 
-            nickname: action.nickname, 
+            username: action.username, 
             email: state.email, 
             loginToken: state.loginToken 
         });
@@ -43,7 +43,7 @@ const userReducer = (state = initialState, action) => {
         return Object.assign({}, state, {
             firstName: state.firstName, 
             lastName: state.lastName, 
-            nickname: state.nickname,
+            username: state.username,
             email: action.email, 
             loginToken: state.loginToken 
         });
@@ -53,7 +53,7 @@ const userReducer = (state = initialState, action) => {
         return Object.assign({}, state, {
             firstName: state.firstName, 
             lastName: state.lastName, 
-            nickname: state.nickname,
+            username: state.username,
             email: state.email, 
             loginToken: action.loginToken 
         });

@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import setLoginToken from '../../redux/actions/user/setLoginToken';
 import getLoginToken from '../../redux/selectors/user/getLoginToken';
-import setNickname from '../../redux/actions/user/setNickname';
-import getNickname from '../../redux/selectors/user/getNickname';
+import setUsername from '../../redux/actions/user/setUsername';
+import getUsername from '../../redux/selectors/user/getUsername';
 import setEmail from '../../redux/actions/user/setEmail';
 import getEmail from '../../redux/selectors/user/getEmail';
 import setFirstName from '../../redux/actions/user/setFirstName';
@@ -16,7 +16,7 @@ import RegisterView from './RegisterView';
 const mapStateToProps = (state) => ({ 
     firstName: getFirstName(state),
     lastName: getLastName(state),
-    nickname: getNickname(state), 
+    username: getUsername(state), 
     email: getEmail(state), 
     loginToken: getLoginToken(state) 
 });
@@ -24,7 +24,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     setFirstName,
     setLastName,
-    setNickname,
+    setUsername,
     setEmail,
     setLoginToken,
 };

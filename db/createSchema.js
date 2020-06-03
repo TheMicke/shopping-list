@@ -18,14 +18,24 @@ console.log("Creating DB Schema");
         DROP TABLE IF EXISTS todos;
         DROP TABLE IF EXISTS lists;
         DROP TABLE IF EXISTS users;
+        DROP TABLE IF EXISTS user_roles;
+
+        CREATE TABLE IF NOT EXISTS user_roles (
+            id SERIAL PRIMARY KEY NOT NULL UNIQUE,
+            title VARCHAR NOT NULL,
+            created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+            updated_at TIMESTAMP
+        );
 
         CREATE TABLE IF NOT EXISTS users (
             id SERIAL PRIMARY KEY NOT NULL UNIQUE,
             first_name VARCHAR NOT NULL,
             last_name VARCHAR NOT NULL,
-            nickname VARCHAR NOT NULL UNIQUE,
+            username VARCHAR NOT NULL UNIQUE,
             email VARCHAR NOT NULL UNIQUE,
             password VARCHAR NOT NULL,
+            user_role INT NOT NULL,
+            FOREIGN KEY (user_role) REFERENCES user_roles (id),
             is_active BOOL NOT NULL DEFAULT true,
             created_at TIMESTAMP NOT NULL DEFAULT NOW(),
             updated_at TIMESTAMP
@@ -51,6 +61,7 @@ console.log("Creating DB Schema");
             created_at TIMESTAMP NOT NULL DEFAULT NOW(),
             updated_at TIMESTAMP
         )
+
     `);
     console.log("Done");
     await client.end();
