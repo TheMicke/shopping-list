@@ -10,7 +10,7 @@ const handleLogin = (email, setEmail, password) => {
 
 
     // const handleLoginSuccess = () => {
-    //     setNickname(nickname);
+    //     setUsername(username);
     //     setIsConnected(true);
     // };
     
@@ -32,10 +32,10 @@ const handleLogin = (email, setEmail, password) => {
     //     .then(data => (data.status === 'login_successful' ? handleLoginSuccess(data) : handleLoginFailure(data)));
 };
 
-const LoginView = ({ setNickname, nickname, setEmail, email, setLoginToken, loginToken }) => (
+const LoginView = ({ setUsername, username, setEmail, email, setLoginToken, loginToken }) => (
     <>
         <p>This is the Login component</p>
-        <p>Current user: {nickname}({email})</p>
+        <p>Current user: {username}({email})</p>
 
         <form>
             <input type="email" id="email" name="email" placeholder="Email"></input>
@@ -57,8 +57,8 @@ const LoginView = ({ setNickname, nickname, setEmail, email, setLoginToken, logi
 );
 
 LoginView.propTypes = {
-    nickname: PropTypes.string,
-    setNickname: PropTypes.func,
+    username: PropTypes.string,
+    setUsername: PropTypes.func,
     email: PropTypes.string,
     setEmail: PropTypes.func,
     loginToken: PropTypes.string,

@@ -13,28 +13,49 @@ const client = new Client({
     await client.query(``);
 
     // eslint-disable-next-line no-console
+    console.log("Adding user roles to db.");
+    await client.query(`
+    INSERT INTO user_roles(
+        title
+    ) 
+    VALUES (
+            'Super Admin'
+        ),
+        (
+            'Admin'
+        ),
+        (
+            'User'
+        );
+    `);
+    console.log("Done");
+
+    // eslint-disable-next-line no-console
     console.log("Adding users to db.");
     await client.query(`
     INSERT INTO users(
         first_name,
         last_name,
-        nickname,
+        username,
         email,
-        password
+        password,
+        user_role
     ) 
     VALUES (
             'John',
             'Doe',
             'JohnDoe',
             'johndoe@contoso.com',
-            'password'
+            'password',
+            1
         ),
         (
             'Jane',
             'Doe',
             'JaneDoe',
             'janedoe@contoso.com',
-            'pwd'
+            'pwd',
+            2
         );
     `);
     console.log("Done");
