@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import setLoginToken from '../../redux/actions/user/setLoginToken';
-import getLoginToken from '../../redux/selectors/user/getLoginToken';
+import setAccessToken from '../../redux/actions/user/setAccessToken';
+import getAccessToken from '../../redux/selectors/user/getAccessToken';
 import setUsername from '../../redux/actions/user/setUsername';
 import getUsername from '../../redux/selectors/user/getUsername';
 import setEmail from '../../redux/actions/user/setEmail';
@@ -10,7 +10,7 @@ import getFirstName from '../../redux/selectors/user/getFirstName';
 import setLastName from '../../redux/actions/user/setLastName';
 import getLastName from '../../redux/selectors/user/getLastName';
 
-
+// import the view/frontend of Register-component
 import RegisterView from './RegisterView';
 
 const mapStateToProps = (state) => ({ 
@@ -18,7 +18,7 @@ const mapStateToProps = (state) => ({
     lastName: getLastName(state),
     username: getUsername(state), 
     email: getEmail(state), 
-    loginToken: getLoginToken(state) 
+    accessToken: getAccessToken(state) 
 });
 
 const mapDispatchToProps = {
@@ -26,7 +26,7 @@ const mapDispatchToProps = {
     setLastName,
     setUsername,
     setEmail,
-    setLoginToken,
+    setAccessToken,
 };
 
 const Register = connect(mapStateToProps, mapDispatchToProps)(RegisterView);

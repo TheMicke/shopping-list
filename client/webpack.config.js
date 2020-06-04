@@ -4,6 +4,11 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.js$/,
+                enforce: 'pre',
+                use: ['source-map-loader'],
+            },
+            {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
@@ -20,8 +25,11 @@ module.exports = {
             },
         ],
     },
+    devtool: 'eval-source-map',
     devServer: {
         port: 3000,
+        publicPath: '/',
+        historyApiFallback: true,
     },
     plugins: [
         new HtmlWebPackPlugin({
@@ -30,3 +38,4 @@ module.exports = {
         }),
     ],
 };
+ 
