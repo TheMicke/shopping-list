@@ -5,7 +5,7 @@ const { testDatabaseUsersControllerFile,
     getAllUsers,
     getSingleUser,
     addUser,
-} = require('../databaseUsersController');
+} = require('../db/databaseUsersController');
 
 
 function randomInt() {

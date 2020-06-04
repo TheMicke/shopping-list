@@ -1,11 +1,11 @@
-import { SET_FIRSTNAME, SET_LASTNAME, SET_USERNAME, SET_EMAIL, SET_LOGINTOKEN } from '../constants/action-types';
+import { SET_FIRSTNAME, SET_LASTNAME, SET_USERNAME, SET_EMAIL, SET_ACCESSTOKEN } from '../constants/action-types';
 
 const initialState = {
     firstName: null,
     lastName: null,
     username: null,
     email: null,
-    loginToken: null,
+    accessToken: null,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -15,7 +15,7 @@ const userReducer = (state = initialState, action) => {
             lastName: state.lastName, 
             username: state.username, 
             email: state.email, 
-            loginToken: state.loginToken 
+            accessToken: state.accessToken 
         });
     }
     
@@ -25,7 +25,7 @@ const userReducer = (state = initialState, action) => {
             lastName: action.lastName, 
             username: state.username, 
             email: state.email, 
-            loginToken: state.loginToken 
+            accessToken: state.accessToken 
         });
     }
 
@@ -35,7 +35,7 @@ const userReducer = (state = initialState, action) => {
             lastName: state.lastName, 
             username: action.username, 
             email: state.email, 
-            loginToken: state.loginToken 
+            accessToken: state.accessToken 
         });
     }
 
@@ -45,17 +45,17 @@ const userReducer = (state = initialState, action) => {
             lastName: state.lastName, 
             username: state.username,
             email: action.email, 
-            loginToken: state.loginToken 
+            accessToken: state.accessToken 
         });
     }
 
-    if (action.type === SET_LOGINTOKEN) {
+    if (action.type === SET_ACCESSTOKEN) {
         return Object.assign({}, state, {
             firstName: state.firstName, 
             lastName: state.lastName, 
             username: state.username,
             email: state.email, 
-            loginToken: action.loginToken 
+            accessToken: action.accessToken 
         });
     }
 

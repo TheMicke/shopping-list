@@ -1,4 +1,5 @@
-const { addUser } = require('./controllers/databaseUsersController');
+const { addUser } = require('./controllers/db/databaseUsersController');
+const { attemptLogin } = require('./controllers/user/userController');
 
 module.exports = function(app) {
     app.get('/', (req, res) => {
@@ -6,7 +7,11 @@ module.exports = function(app) {
     });
 
     app.post('/user/register', async (req, res) => {
-        // console.log('register POST-route ', req.body);
         res.send(JSON.stringify(await addUser(req.body)));
     });
+    
+    app.post('/user/login', async (req, res) => {
+        res.send(JSON.stringify(await attemptLogin(req.body)));
+    });
+    
 };

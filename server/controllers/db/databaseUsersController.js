@@ -41,23 +41,19 @@ const getSingleUserByUsername = async (userData) => {
     `);
 
     return user;
+
 };
 
 // Add new user to the database
 const addUser = async (userData, userRole = 3) => { // userRole 3 == User. Should default to that if super admin (1) or admin (2) is not specified
-    console.log('userData @ addUser @ databaseUsersController; ', userData);
     const client = getNewClient();
     await client.connect();
 
-    console.log('email.. ', await getSingleUserByEmail({email: userData.email}).rowCount !== 0);
     if ((await getSingleUserByEmail({email: userData.email})).rowCount !== 0) {
-        console.log('Error: Email is already registered...');
         return {status: 'failed', message: 'Email is already registered'};
     } 
-    console.log('username... ', await getSingleUserByUsername({username: userData.username}).rowCount !== 0);
 
     if ((await getSingleUserByUsername({username: userData.username})).rowCount !== 0) {
-        console.log('Error: Usernamne already in use...');
         return {status: 'failed', message: 'Username is already taken'};
     } else {
         console.log('Adding user to database...');
@@ -85,10 +81,22 @@ const addUser = async (userData, userRole = 3) => { // userRole 3 == User. Shoul
     }
 };
 
+const checkLoginCredentials = async (email, password) => {
+    const user = await getSingleUserByEmail({email: email});
+    const pwd = user.rows[0].password;
+    
+    if (await bcrypt.compare(password, pwd)) {
+        return true;
+    } else {
+        return false;
+    }
+};
+
 module.exports = { 
     testDatabaseUsersControllerFile, 
     getAllUsers,
     getSingleUserByEmail,
     getSingleUserByUsername,
     addUser,
+    checkLoginCredentials,
 };

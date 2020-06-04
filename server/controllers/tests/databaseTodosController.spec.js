@@ -5,7 +5,7 @@ const { testDatabaseTodosControllerFile,
     getAllLists, 
     getListTodos, 
     addTodo,
-} = require('../databaseTodosController');
+} = require('../db/databaseTodosController');
 
 
 describe('Database Todos Controller test suite', () => {
