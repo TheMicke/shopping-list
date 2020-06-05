@@ -16,16 +16,13 @@ import getLastName from '../../redux/selectors/user/getLastName';
 import ProfileView from './ProfileView';
 
 
-const mapStateToProps = (state) => {
-        console.log(state)
-        return { 
-        firstName: getFirstName(state),
-        lastName: getLastName(state),
-        username: getUsername(state), 
-        email: getEmail(state), 
-        accessToken: getAccessToken(state) 
-    }
-};
+const mapStateToProps = (state) => ({
+    firstName: getFirstName(state),
+    lastName: getLastName(state),
+    username: getUsername(state), 
+    email: getEmail(state), 
+    accessToken: getAccessToken(state) 
+});
 
 const mapDispatchToProps = {
     setFirstName,
