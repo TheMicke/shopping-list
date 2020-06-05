@@ -1,5 +1,5 @@
 const { addUser } = require('./controllers/db/databaseUsersController');
-const { attemptLogin } = require('./controllers/user/userController');
+const { userLogin } = require('./controllers/user/userController');
 
 module.exports = function(app) {
     app.get('/', (req, res) => {
@@ -11,7 +11,7 @@ module.exports = function(app) {
     });
     
     app.post('/user/login', async (req, res) => {
-        res.send(JSON.stringify(await attemptLogin(req.body)));
+        res.send(JSON.stringify(await userLogin(req.body)));
     });
-    
+
 };

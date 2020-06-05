@@ -46,6 +46,7 @@ const getSingleUserByUsername = async (userData) => {
 
 // Add new user to the database
 const addUser = async (userData, userRole = 3) => { // userRole 3 == User. Should default to that if super admin (1) or admin (2) is not specified
+    console.log('userData @ addUser @ databaseUsersController; ', userData);
     const client = getNewClient();
     await client.connect();
 
@@ -82,12 +83,15 @@ const addUser = async (userData, userRole = 3) => { // userRole 3 == User. Shoul
 };
 
 const checkLoginCredentials = async (email, password) => {
+    console.log('email + password @ checkLoginCredentials ', email, password );
     const user = await getSingleUserByEmail({email: email});
     const pwd = user.rows[0].password;
     
     if (await bcrypt.compare(password, pwd)) {
+        console.log('password checks out');
         return true;
     } else {
+        console.log('wrong pwd');
         return false;
     }
 };

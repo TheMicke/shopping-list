@@ -4,17 +4,17 @@
 ********************************************************************/
 
 import config from '../../config.json';
-import setAccessToken from '../../redux/actions/user/setAccessToken';
 import store from '../../redux/store';
 
-const handleLogin = (email, password, setAccessToken) => {
+const handleLogin = (email, password, setFirstName, setLastName, setUsername, setAccessToken) => {
     const loginInfoText = document.getElementById('login-info-text');
 
     const handleLoginSuccess = (data) => {
         localStorage.setItem('listAppAccessToken', data.token)
+        setFirstName(data.firstName);
+        setLastName(data.lastName);
+        setUsername(data.username);
         setAccessToken(data.token);
-        console.log(data.token);
-        console.log(store.getState());
     };
     
     const handleLoginFailure = (data) => {

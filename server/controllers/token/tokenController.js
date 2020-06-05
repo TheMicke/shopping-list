@@ -1,20 +1,20 @@
 const jwt = require('jsonwebtoken');
-const { jwtPrivateKey, jwtPublicKey, jwtOptions } = require('../../config');
+const { jwtPrivateKey, jwtPublicKey, jwtSignOptions, jwtVerifyOptions } = require('../../config');
 
 const getJwtToken = async (user) => {
-    // jwtOptions.subject = user.email;
+    jwtSignOptions.subject = user.email;
     const token = await jwt.sign({ 
         email: user.email,
         username: user.username,
         userRole: user.userRole,
-    }, jwtPrivateKey, jwtOptions);
+    }, jwtPrivateKey, jwtSignOptions);
 
     return token;
 };
 
 const verifyToken = async (token) => {
-    const legit = await jwt.verify(token, jwtPublicKey, jwtOptions);
-    console.log(legit);
+    const legit = jwt.verify(token, jwtPublicKey, jwtVerifyOptions);
+    console.log('JWT verification result: ' + JSON.stringify(legit));
 };
 
 module.exports = {

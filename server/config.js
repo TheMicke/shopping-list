@@ -16,14 +16,33 @@ MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAIn7CK1svrv6vOhDjtyykrcX75TOZoCR
 rYvUbUF0mVNgNqiyGDhTNpdDxBtLI3ePKSJHPaa8lkBDmxVysY0QMK8CAwEAAQ==
 -----END PUBLIC KEY-----`;
 
-const jwtOptions = {
-    issuer: 'YourCompanyName',
-    algorithm: 'RS256', 
-    expiresIn: '1year'
+// Parameters for JWT options
+const issuer = 'YourCompanyName';
+const subject = 'changedToCorrectWhenUserLogsIn';
+const audience = 'http://app-url';
+const algorithm = 'RS256'; 
+const expiresIn = '1year';
+
+
+const jwtSignOptions = {
+    issuer: issuer,
+    subject: subject,
+    audience: audience,
+    algorithm: algorithm, 
+    expiresIn: expiresIn,
+};
+
+const jwtVerifyOptions = {
+    issuer: issuer,
+    subject: subject,
+    audience: audience,
+    algorithm: [algorithm], 
+    expiresIn: expiresIn,
 };
 
 module.exports = {
     jwtPrivateKey,
     jwtPublicKey,
-    jwtOptions,
+    jwtSignOptions,
+    jwtVerifyOptions,
 };

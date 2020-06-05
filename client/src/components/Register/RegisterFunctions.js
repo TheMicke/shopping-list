@@ -15,7 +15,7 @@ const checkPasswordMatch = (password, passwordConfirm) => {
     }
 };
 
-// Changes the info-text if passwords missmatch
+// Changes the register info-text
 const handleRegisterInfoText = (text, type = 'text') => {
     const registerInfoText = document.getElementById('register-info-text');
     if (type == 'html') {
@@ -34,6 +34,7 @@ const doRegisterUser = (firstName, lastName, email, username, password) => {
     const registerUsernameField = document.getElementById('register-username');
     const registerEmailField = document.getElementById('register-email');
     const registerPasswordField = document.getElementById('register-password');
+    const registerConfirmPasswordField = document.getElementById('register-confirm-password');
 
     // Handles a success of registering user
     const handleRegisterSuccess = () => {
@@ -43,6 +44,7 @@ const doRegisterUser = (firstName, lastName, email, username, password) => {
         registerUsernameField.value = '';
         registerEmailField.value = '';
         registerPasswordField.value = '';
+        registerConfirmPasswordField.value = '';
         handleRegisterInfoText('User registered successfully. Click <a href="/login">here</a> to login.', 'html');
         <Redirect to='/login' />
     };
