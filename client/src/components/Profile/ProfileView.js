@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
 const ProfileView = (setFirstName, firstName, setLastName, lastName, setUsername, username, setEmail, email, setAccessToken, accessToken) => {
+    console.log(username)
     return (
         <>
             <h1>Profile for {username}</h1>
