@@ -4,7 +4,6 @@
 ********************************************************************/
 
 import config from '../../config.json';
-import store from '../../redux/store';
 
 const handleLogin = (email, password, setFirstName, setLastName, setUsername, setAccessToken) => {
     const loginInfoText = document.getElementById('login-info-text');

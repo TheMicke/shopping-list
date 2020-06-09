@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const { jwtPrivateKey, jwtPublicKey, jwtSignOptions, jwtVerifyOptions } = require('../../config');
 
 const getJwtToken = async (user) => {
+    console.log('getJwtToeken user', user);
     jwtSignOptions.subject = user.email;
     const token = await jwt.sign({ 
         email: user.email,

@@ -10,6 +10,7 @@ module.exports = function(app) {
 
     app.post('/api/user/register', async (req, res) => {
         res.send(JSON.stringify(await addUser(req.body)));
+        
     });
     
     app.post('/api/user/login', async (req, res) => {

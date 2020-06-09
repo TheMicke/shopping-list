@@ -6,7 +6,7 @@ const userLogin = async userData => {
         console.log('Credentials checks out! Logging in!');
         const user = await getSingleUserByEmail({ email: userData.email });
         const token = await getJwtToken(user.rows[0]);
-        
+
         return { 
             status: 'success', 
             message: '', 
