@@ -57,7 +57,7 @@ const doRegisterUser = (firstName, lastName, email, username, password) => {
 
 
     // User input will be sent to the backend to be validated. 
-    fetch(config.server + '/user/register', {
+    fetch(config.server + '/api/user/register', {
         method: 'POST',
         mode: 'cors',
         headers: {

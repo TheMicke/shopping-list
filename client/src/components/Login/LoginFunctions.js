@@ -22,7 +22,7 @@ const handleLogin = (email, password, setFirstName, setLastName, setUsername, se
         console.log(data.loginMessage);
     };
 
-    fetch(config.server + '/user/login', {
+    fetch(config.server + '/api/user/login', {
         method: 'POST',
         mode: 'cors',
         headers: {
