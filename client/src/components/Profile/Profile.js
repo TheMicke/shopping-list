@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 // Redux actions and reducers
 import setAccessToken from '../../redux/actions/user/setAccessToken';
 import getAccessToken from '../../redux/selectors/user/getAccessToken';
+import setUserId from '../../redux/actions/user/setUserId';
+import getUserId from '../../redux/selectors/user/getUserId';
 import setUsername from '../../redux/actions/user/setUsername';
 import getUsername from '../../redux/selectors/user/getUsername';
 import setEmail from '../../redux/actions/user/setEmail';
@@ -15,8 +17,8 @@ import getLastName from '../../redux/selectors/user/getLastName';
 // import the view/frontend of Profile-component
 import ProfileView from './ProfileView';
 
-
 const mapStateToProps = (state) => ({
+    userId: getUserId(state),
     firstName: getFirstName(state),
     lastName: getLastName(state),
     username: getUsername(state), 
@@ -25,6 +27,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
+    setUserId,
     setFirstName,
     setLastName,
     setUsername,

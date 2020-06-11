@@ -1,6 +1,7 @@
 const { addUser } = require('./controllers/db/databaseUsersController');
 const { userLogin } = require('./controllers/user/userController');
 
+// const { jwtOptions } = require('./config');
 const jwt = require('./services/jwtService');
 
 module.exports = function(app) {
@@ -17,13 +18,15 @@ module.exports = function(app) {
         res.send(JSON.stringify(await userLogin(req.body)));
     });
     
-    app.get('/api/user/profile', async (req, res) => {
-        console.log(req.headers['authorization']);
-        if(jwt.verify()){
-            res.send(JSON.stringify({status: 'sucess', message: 'Token valid'}));
-        } else {
-            res.send(JSON.stringify({status: 'fail', message: 'Token not valid'}));
-        }
+    app.post('/api/user/profile', async (req, res) => {
+        jwt.verify(req.get('Authorization'), req.body);
+        console.log('Route decode', jwt.decode(req.get('Authorization')));
+
+        // if(jwt.verify(req.get('Authorization'), req.body)){
+        //     res.send(JSON.stringify({status: 'sucess', message: 'Token is valid'}));
+        // } else {
+        //     res.send(JSON.stringify({status: 'fail', message: 'Token is invalid'}));
+        // }
     });
 
 

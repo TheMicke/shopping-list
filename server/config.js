@@ -16,33 +16,39 @@ MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAIn7CK1svrv6vOhDjtyykrcX75TOZoCR
 rYvUbUF0mVNgNqiyGDhTNpdDxBtLI3ePKSJHPaa8lkBDmxVysY0QMK8CAwEAAQ==
 -----END PUBLIC KEY-----`;
 
-// Parameters for JWT options
-const issuer = 'YourCompanyName';
-const subject = 'changedToCorrectWhenUserLogsIn';
-const audience = 'http://app-url';
-const algorithm = 'RS256'; 
-const expiresIn = '1year';
+// // Parameters for JWT options
+// const jwtOptions = {
+//     issuer: 'YourCompanyName',
+//     subject: 'changedToCorrectWhenUserLogsIn',
+//     algorithm: 'RS256',
+//     expiresIn: '1year',
+// };
 
 
-const jwtSignOptions = {
-    issuer: issuer,
-    subject: subject,
-    audience: audience,
-    algorithm: algorithm, 
-    expiresIn: expiresIn,
-};
+// const jwtSignOptions = {
+//     issuer: jwtOptions.issuer,
+//     subject: jwtOptions.subject,
+//     audience: jwtOptions.audience,
+//     algorithm: jwtOptions.algorithm, 
+//     expiresIn: jwtOptions.expiresIn,
+// };
 
-const jwtVerifyOptions = {
-    issuer: issuer,
-    subject: subject,
-    audience: audience,
-    algorithm: [algorithm], 
-    expiresIn: expiresIn,
-};
+// const jwtVerifyOptions = {
+//     issuer: jwtOptions.issuer,
+//     subject: jwtOptions.subject,
+//     audience: jwtOptions.audience,
+//     algorithm: [jwtOptions.algorithm], 
+//     expiresIn: jwtOptions.expiresIn,
+// };
 
+// module.exports = {
+//     jwtPrivateKey,
+//     jwtPublicKey,
+//     jwtSignOptions,
+//     jwtVerifyOptions,
+//     jwtOptions
+// };
 module.exports = {
     jwtPrivateKey,
     jwtPublicKey,
-    jwtSignOptions,
-    jwtVerifyOptions,
 };

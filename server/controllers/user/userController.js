@@ -1,5 +1,5 @@
 const { checkLoginCredentials, getSingleUserByEmail } = require('../db/databaseUsersController');
-const { getJwtToken, verifyToken } = require('../token/tokenController');
+const { getJwtToken } = require('../token/tokenController');
 
 const userLogin = async userData => {
     if (await checkLoginCredentials(userData.email, userData.password)) {
@@ -10,6 +10,7 @@ const userLogin = async userData => {
         return { 
             status: 'success', 
             message: '', 
+            id: user.rows[0].id,
             firstName: user.rows[0].first_name,
             lastName: user.rows[0].last_name,
             username: user.rows[0].username,

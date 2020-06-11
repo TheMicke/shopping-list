@@ -2,13 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Redirect } from 'react-router-dom';
+import { getProfileData } from './ProfileFunctions';
 
-const ProfileView = ({setFirstName, firstName, setLastName, lastName, setUsername, username, setEmail, email, setAccessToken, accessToken}) => {
+const ProfileView = ({setUserId, userId, setFirstName, firstName, setLastName, lastName, setUsername, username, setEmail, email, setAccessToken, accessToken}) => {
    
+    const userProfile = getProfileData(accessToken, userId, email);
+
     return (
         accessToken == null ? <Redirect to='/login' /> :
         <>
             <h1>Profile for {username}</h1>
+            <p>ID: {userId}</p>
             <p>Name: {`${firstName} ${lastName}`}</p>
             <p>{`email: ${email}`}</p>
         </>
@@ -16,15 +20,16 @@ const ProfileView = ({setFirstName, firstName, setLastName, lastName, setUsernam
 };
 
 ProfileView.propTypes = {
+    userId: PropTypes.number.isRequired,
     firstName: PropTypes.string,
     setFirstName: PropTypes.func,
     lastName: PropTypes.string,
     setLastName: PropTypes.func,
-    username: PropTypes.string,
+    username: PropTypes.string.isRequired,
     setUsername: PropTypes.func,
-    email: PropTypes.string,
+    email: PropTypes.string.isRequired,
     setEmail: PropTypes.func,
-    accessToken: PropTypes.string,
+    accessToken: PropTypes.string.isRequired,
     setAccessToken: PropTypes.func,
 };
 

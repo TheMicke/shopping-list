@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { handleLogin } from './LoginFunctions';
 import { Redirect } from 'react-router-dom';
 
-const LoginView = ({ setFirstName, firstName, setLastName, lastName, setUsername, username, setEmail, email, setAccessToken, accessToken }) => (
+const LoginView = ({ setUserId, userId, setFirstName, firstName, setLastName, lastName, setUsername, username, setEmail, email, setAccessToken, accessToken }) => (
     <>
         <p>This is the Login component</p>
         <p>Current user: {username}({email})</p>
@@ -20,6 +20,7 @@ const LoginView = ({ setFirstName, firstName, setLastName, lastName, setUsername
                         handleLogin(
                             document.getElementById('login-email').value, 
                             document.getElementById('login-password').value,
+                            setUserId,
                             setFirstName,
                             setLastName,
                             setUsername,
