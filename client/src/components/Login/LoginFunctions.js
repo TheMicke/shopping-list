@@ -5,20 +5,20 @@
 
 import config from '../../config.json';
 
-import store from '../../redux/store';
-
 const handleLogin = (email, password, setUserId, setFirstName, setLastName, setUsername, setAccessToken) => {
     const loginInfoText = document.getElementById('login-info-text');
 
     const handleLoginSuccess = (data) => {
         console.log('data@handleLoginSuccess', data);
-        localStorage.setItem('listAppAccessToken', data.token)
+        localStorage.setItem('listAppAccessToken', data.token);
+        localStorage.setItem('listAppUserId', data.id);
+        localStorage.setItem('listAppUserEmail', data.email);
+
         setUserId(data.id);
         setFirstName(data.firstName);
         setLastName(data.lastName);
         setUsername(data.username);
         setAccessToken(data.token);
-        console.log('state', store.getState());
     };
     
     const handleLoginFailure = (data) => {

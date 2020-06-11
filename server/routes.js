@@ -1,5 +1,4 @@
-const { addUser, getSingleUserByEmail } = require('./controllers/db/databaseUsersController');
-const { userLogin, getSingleUser } = require('./controllers/user/userController');
+const { addUser, userLogin, getSingleUser } = require('./controllers/user/userController');
 
 // Middleware
 const { authenticateToken } = require('./middleware/authenticateToken');

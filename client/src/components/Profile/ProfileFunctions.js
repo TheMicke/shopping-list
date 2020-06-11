@@ -2,6 +2,7 @@ import config from '../../config.json';
 
 const getProfileData = (token, userId, email) => {
 
+
     fetch(config.server + '/api/user/profile', {
         method: 'POST',
         mode: 'cors',

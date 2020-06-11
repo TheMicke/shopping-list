@@ -6,30 +6,44 @@ import { getProfileData } from './ProfileFunctions';
 
 const ProfileView = ({setUserId, userId, setFirstName, firstName, setLastName, lastName, setUsername, username, setEmail, email, setAccessToken, accessToken}) => {
    
-    const userProfile = getProfileData(accessToken, userId, email);
+    if (accessToken == null) {
+        setAccessToken(localStorage.getItem('listAppAccessToken'));
+    }
+    
+    if (userId == null) {
+        setUserId(Number(localStorage.getItem('listAppUserId')));
+    }
+    
+    if (email == null) {
+        setEmail(localStorage.getItem('listAppUserEmail'));
+    }
+    
+    if (accessToken != null && userId != null && email != null) {
+        getProfileData(accessToken, userId, email)
+    }
 
     return (
-        accessToken == null ? <Redirect to='/login' /> :
-        <>
-            <h1>Profile for {username}</h1>
-            <p>ID: {userId}</p>
-            <p>Name: {`${firstName} ${lastName}`}</p>
-            <p>{`email: ${email}`}</p>
-        </>
+        accessToken == null ? <Redirect to='/login' /> : 
+            <>
+                <h1>Profile for {username}</h1>
+                <p>ID: {userId}</p>
+                <p>Name: {firstName && firstName} {lastName && lastName}</p>
+                <p>Email: {email}</p>
+            </>
     );
 };
 
 ProfileView.propTypes = {
-    userId: PropTypes.number.isRequired,
+    userId: PropTypes.number,
     firstName: PropTypes.string,
     setFirstName: PropTypes.func,
     lastName: PropTypes.string,
     setLastName: PropTypes.func,
-    username: PropTypes.string.isRequired,
+    username: PropTypes.string,
     setUsername: PropTypes.func,
-    email: PropTypes.string.isRequired,
+    email: PropTypes.string,
     setEmail: PropTypes.func,
-    accessToken: PropTypes.string.isRequired,
+    accessToken: PropTypes.string,
     setAccessToken: PropTypes.func,
 };
 
