@@ -21,13 +21,15 @@ const getAllUsers = async () => {
 
 // Return single user from database based on email
 const getSingleUserByEmail = async (userData) => {
+    console.log('getSingleUserByEmail userData: ', userData);
     const client = getNewClient();
     await client.connect();
-
+    
     const user = await client.query(`
-        SELECT * FROM users WHERE email = '${userData.email}';
+    SELECT * FROM users WHERE email = '${userData.email}';
     `);
-
+    
+    console.log('getSingleUserByEmail user: ', user);
     return user;
 };
 

@@ -1,11 +1,11 @@
 const { checkLoginCredentials, getSingleUserByEmail } = require('../db/databaseUsersController');
-const { getJwtToken } = require('../token/tokenController');
+const { generateJwtToken } = require('../token/tokenController');
 
-const userLogin = async userData => {
+const userLogin = async (userData) => {
     if (await checkLoginCredentials(userData.email, userData.password)) {
         console.log('Credentials checks out! Logging in!');
         const user = await getSingleUserByEmail({ email: userData.email });
-        const token = await getJwtToken(user.rows[0]);
+        const token = await generateJwtToken(user.rows[0]);
 
         return { 
             status: 'success', 
@@ -23,4 +23,17 @@ const userLogin = async userData => {
 };
 
 
-module.exports = { userLogin };
+// Currently only support email...
+const getSingleUser = async (emailOrUsername) => {
+    const user = await getSingleUserByEmail(emailOrUsername);
+
+    if(user.rowCount == 0) {
+        return { status: 'failed', message: 'Something went wrong finding user in the database' };
+    } else {
+        return { status: 'success', message: '', data: user };
+    }
+
+};
+
+
+module.exports = { userLogin, getSingleUser };
