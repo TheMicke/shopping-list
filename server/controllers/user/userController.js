@@ -25,7 +25,7 @@ const userLogin = async (userData) => {
 
 // Currently only support email...
 const getSingleUser = async (emailOrUsername) => {
-    const user = await getSingleUserByEmail(emailOrUsername);
+    const user = await getSingleUserByEmail({email: emailOrUsername});
 
     if(user.rowCount == 0) {
         return { status: 'failed', message: 'Something went wrong finding user in the database' };
