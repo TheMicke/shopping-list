@@ -20,14 +20,14 @@ const getAllUsers = async () => {
 };
 
 // Return single user from database based on email
-const getSingleUserByEmail = async (userData) => {
+const getSingleUserByEmail = async (email) => {
     const client = getNewClient();
     await client.connect();
-
+    
     const user = await client.query(`
-        SELECT * FROM users WHERE email = '${userData.email}';
+    SELECT * FROM users WHERE email = '${email}';
     `);
-
+    
     return user;
 };
 
@@ -45,11 +45,11 @@ const getSingleUserByUsername = async (userData) => {
 };
 
 // Add new user to the database
-const addUser = async (userData, userRole = 3) => { // userRole 3 == User. Should default to that if super admin (1) or admin (2) is not specified
+const addUserToDb = async (userData, userRole = 3) => { // userRole 3 == User. Should default to that if super admin (1) or admin (2) is not specified
     const client = getNewClient();
     await client.connect();
 
-    if ((await getSingleUserByEmail({email: userData.email})).rowCount !== 0) {
+    if ((await getSingleUserByEmail(userData.email)).rowCount !== 0) {
         return {status: 'failed', message: 'Email is already registered'};
     } 
 
@@ -81,22 +81,11 @@ const addUser = async (userData, userRole = 3) => { // userRole 3 == User. Shoul
     }
 };
 
-const checkLoginCredentials = async (email, password) => {
-    const user = await getSingleUserByEmail({email: email});
-    const pwd = user.rows[0].password;
-    
-    if (await bcrypt.compare(password, pwd)) {
-        return true;
-    } else {
-        return false;
-    }
-};
 
 module.exports = { 
     testDatabaseUsersControllerFile, 
     getAllUsers,
     getSingleUserByEmail,
     getSingleUserByUsername,
-    addUser,
-    checkLoginCredentials,
+    addUserToDb,
 };

@@ -4,17 +4,21 @@
 ********************************************************************/
 
 import config from '../../config.json';
-import setAccessToken from '../../redux/actions/user/setAccessToken';
-import store from '../../redux/store';
 
-const handleLogin = (email, password, setAccessToken) => {
+const handleLogin = (email, password, setUserId, setFirstName, setLastName, setUsername, setAccessToken) => {
     const loginInfoText = document.getElementById('login-info-text');
 
     const handleLoginSuccess = (data) => {
-        localStorage.setItem('listAppAccessToken', data.token)
+        console.log('data@handleLoginSuccess', data);
+        localStorage.setItem('listAppAccessToken', data.token);
+        localStorage.setItem('listAppUserId', data.id);
+        localStorage.setItem('listAppUserEmail', data.email);
+
+        setUserId(data.id);
+        setFirstName(data.firstName);
+        setLastName(data.lastName);
+        setUsername(data.username);
         setAccessToken(data.token);
-        console.log(data.token);
-        console.log(store.getState());
     };
     
     const handleLoginFailure = (data) => {
@@ -22,7 +26,7 @@ const handleLogin = (email, password, setAccessToken) => {
         console.log(data.loginMessage);
     };
 
-    fetch(config.server + '/user/login', {
+    fetch(config.server + '/api/user/login', {
         method: 'POST',
         mode: 'cors',
         headers: {

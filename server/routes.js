@@ -1,17 +1,28 @@
-const { addUser } = require('./controllers/db/databaseUsersController');
-const { attemptLogin } = require('./controllers/user/userController');
+const { addUser, userLogin, getSingleUser } = require('./controllers/user/userController');
+
+// Middleware
+const { authenticateToken } = require('./middleware/authenticateToken');
+
 
 module.exports = function(app) {
-    app.get('/', (req, res) => {
+    app.get('/api/', (req, res) => {
         res.send('Hi there..!');
     });
 
-    app.post('/user/register', async (req, res) => {
+    app.post('/api/user/register', async (req, res) => {
         res.send(JSON.stringify(await addUser(req.body)));
+        
     });
     
-    app.post('/user/login', async (req, res) => {
-        res.send(JSON.stringify(await attemptLogin(req.body)));
+    app.post('/api/user/login', async (req, res) => {
+        res.send(JSON.stringify(await userLogin(req.body)));
     });
     
+    app.post('/api/user/profile', authenticateToken, async (req, res) => {
+        const user = await getSingleUser(req.body.email);
+        res.status(200).send(JSON.stringify(user));
+    });
+
+
+
 };

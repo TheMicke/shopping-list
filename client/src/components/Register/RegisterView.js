@@ -6,7 +6,7 @@ import { checkPasswordMatch, handleRegisterInfoText, doRegisterUser } from './Re
 /*
 / The actual view / frontend
 */
-const RegisterView = (firstName, lastName, username, email, accessToken ) => (
+const RegisterView = ({ firstName, lastName, username, email, accessToken }) => (
     <>
         <p>This is the Register component</p>
 

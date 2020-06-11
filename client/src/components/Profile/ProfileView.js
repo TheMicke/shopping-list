@@ -1,0 +1,50 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
+import { Redirect } from 'react-router-dom';
+import { getProfileData } from './ProfileFunctions';
+
+const ProfileView = ({setUserId, userId, setFirstName, firstName, setLastName, lastName, setUsername, username, setEmail, email, setAccessToken, accessToken}) => {
+   
+    if (accessToken == null) {
+        setAccessToken(localStorage.getItem('listAppAccessToken'));
+    }
+    
+    if (userId == null) {
+        setUserId(Number(localStorage.getItem('listAppUserId')));
+    }
+    
+    if (email == null) {
+        setEmail(localStorage.getItem('listAppUserEmail'));
+    }
+    
+    if (accessToken != null && userId != null && email != null) {
+        getProfileData(accessToken, userId, email)
+    }
+
+    return (
+        accessToken == null ? <Redirect to='/login' /> : 
+            <>
+                <h1>Profile for {username}</h1>
+                <p>ID: {userId}</p>
+                <p>Name: {firstName && firstName} {lastName && lastName}</p>
+                <p>Email: {email}</p>
+            </>
+    );
+};
+
+ProfileView.propTypes = {
+    userId: PropTypes.number,
+    firstName: PropTypes.string,
+    setFirstName: PropTypes.func,
+    lastName: PropTypes.string,
+    setLastName: PropTypes.func,
+    username: PropTypes.string,
+    setUsername: PropTypes.func,
+    email: PropTypes.string,
+    setEmail: PropTypes.func,
+    accessToken: PropTypes.string,
+    setAccessToken: PropTypes.func,
+};
+
+export default ProfileView;

@@ -1,23 +1,23 @@
 const jwt = require('jsonwebtoken');
-const { jwtPrivateKey, jwtPublicKey, jwtOptions } = require('../../config');
+const { jwtPrivateKey } = require('../../config');
 
-const getJwtToken = async (user) => {
-    // jwtOptions.subject = user.email;
-    const token = await jwt.sign({ 
-        email: user.email,
-        username: user.username,
-        userRole: user.userRole,
-    }, jwtPrivateKey, jwtOptions);
-
-    return token;
+const jwtOptions = {
+    issuer: 'YourCompanyName',
+    algorithm: 'RS256',
+    expiresIn: '180d',
 };
 
-const verifyToken = async (token) => {
-    const legit = await jwt.verify(token, jwtPublicKey, jwtOptions);
-    console.log(legit);
+const generateJwtToken = (userData) => {
+    jwtOptions.subject = userData.id.toString();
+
+    const payload = {
+        userId: userData.id,
+        username: userData.username,
+    };
+
+    return jwt.sign(payload, jwtPrivateKey, jwtOptions);
 };
 
 module.exports = {
-    getJwtToken,
-    verifyToken,
+    generateJwtToken,
 };

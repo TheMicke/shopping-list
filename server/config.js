@@ -16,14 +16,39 @@ MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAIn7CK1svrv6vOhDjtyykrcX75TOZoCR
 rYvUbUF0mVNgNqiyGDhTNpdDxBtLI3ePKSJHPaa8lkBDmxVysY0QMK8CAwEAAQ==
 -----END PUBLIC KEY-----`;
 
-const jwtOptions = {
-    issuer: 'YourCompanyName',
-    algorithm: 'RS256', 
-    expiresIn: '1year'
-};
+// // Parameters for JWT options
+// const jwtOptions = {
+//     issuer: 'YourCompanyName',
+//     subject: 'changedToCorrectWhenUserLogsIn',
+//     algorithm: 'RS256',
+//     expiresIn: '1year',
+// };
 
+
+// const jwtSignOptions = {
+//     issuer: jwtOptions.issuer,
+//     subject: jwtOptions.subject,
+//     audience: jwtOptions.audience,
+//     algorithm: jwtOptions.algorithm, 
+//     expiresIn: jwtOptions.expiresIn,
+// };
+
+// const jwtVerifyOptions = {
+//     issuer: jwtOptions.issuer,
+//     subject: jwtOptions.subject,
+//     audience: jwtOptions.audience,
+//     algorithm: [jwtOptions.algorithm], 
+//     expiresIn: jwtOptions.expiresIn,
+// };
+
+// module.exports = {
+//     jwtPrivateKey,
+//     jwtPublicKey,
+//     jwtSignOptions,
+//     jwtVerifyOptions,
+//     jwtOptions
+// };
 module.exports = {
     jwtPrivateKey,
     jwtPublicKey,
-    jwtOptions,
 };

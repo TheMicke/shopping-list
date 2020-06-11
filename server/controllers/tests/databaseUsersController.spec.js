@@ -1,11 +1,11 @@
 /* eslint-disable no-undef */
 const assert = require('assert');
 
-const { testDatabaseUsersControllerFile, 
-    getAllUsers,
-    getSingleUser,
-    addUser,
-} = require('../db/databaseUsersController');
+const { testDatabaseUsersControllerFile } = require('../db/databaseUsersController');
+
+const {
+    addUser
+} = require('../user/userController');
 
 
 function randomInt() {

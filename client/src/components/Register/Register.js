@@ -1,4 +1,6 @@
 import { connect } from 'react-redux';
+
+// Redux actions and reducers
 import setAccessToken from '../../redux/actions/user/setAccessToken';
 import getAccessToken from '../../redux/selectors/user/getAccessToken';
 import setUsername from '../../redux/actions/user/setUsername';

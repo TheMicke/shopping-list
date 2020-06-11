@@ -14,16 +14,16 @@ import getFirstName from '../../redux/selectors/user/getFirstName';
 import setLastName from '../../redux/actions/user/setLastName';
 import getLastName from '../../redux/selectors/user/getLastName';
 
-// import the view/frontend of Login-component
-import LoginView from './LoginView';
+// import the view/frontend of Profile-component
+import ProfileView from './ProfileView';
 
-const mapStateToProps = (state) => ({ 
+const mapStateToProps = (state) => ({
     userId: getUserId(state),
-    firstName: getFirstName(state),
-    lastName: getLastName(state),
-    username: getUsername(state), 
-    email: getEmail(state), 
-    accessToken: getAccessToken(state) 
+    firstName: getFirstName(state),
+    lastName: getLastName(state),
+    username: getUsername(state), 
+    email: getEmail(state), 
+    accessToken: getAccessToken(state) 
 });
 
 const mapDispatchToProps = {
@@ -35,6 +35,6 @@ const mapDispatchToProps = {
     setAccessToken,
 };
 
-const Login = connect(mapStateToProps, mapDispatchToProps)(LoginView);
+const Profile = connect(mapStateToProps, mapDispatchToProps)(ProfileView);
 
-export default Login;
+export default Profile;
