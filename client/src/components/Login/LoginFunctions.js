@@ -14,6 +14,8 @@ const handleLogin = (email, password, setUserId, setFirstName, setLastName, setU
         localStorage.setItem('listAppUserId', data.id);
         localStorage.setItem('listAppUserEmail', data.email);
 
+        localStorage.setItem('listAppData', JSON.stringify({accessToken: data.token, userId: data.id, userEmail: data.email}));
+
         setUserId(data.id);
         setFirstName(data.firstName);
         setLastName(data.lastName);
