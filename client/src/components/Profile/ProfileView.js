@@ -7,15 +7,14 @@ import { getProfileData } from './ProfileFunctions';
 const ProfileView = ({setUserId, userId, setFirstName, firstName, setLastName, lastName, setUsername, username, setEmail, email, setAccessToken, accessToken}) => {
    
     if (accessToken == null) {
-        setAccessToken(localStorage.getItem('listAppAccessToken'));
-    }
-    
-    if (userId == null) {
-        setUserId(Number(localStorage.getItem('listAppUserId')));
-    }
-    
-    if (email == null) {
-        setEmail(localStorage.getItem('listAppUserEmail'));
+        const data = JSON.parse(localStorage.getItem('listAppData'));
+        if(data == null) {
+            <Redirect to='/login' />
+        } else {
+            setUserId(Number(data.userId));
+            setEmail(data.userEmail);
+            setAccessToken(data.accessToken)
+        }
     }
     
     if (accessToken != null && userId != null && email != null) {
